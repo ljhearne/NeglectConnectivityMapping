@@ -14,15 +14,11 @@ dsi_path = '/home/lukeh/projects/NeglectNetworks/tools/dsi-studio/'
 lesn_dir = proj_dir+'data/derivatives/resampled_lesions/'
 fib_file = proj_dir+'data/tractography_atlas/HCP842_1mm.fib.gz'
 tract_file = proj_dir+'data/tractography_atlas/all_tracts_1mm.trk.gz'
-parc_dir = proj_dir+'data/parcellations/Schaefer_Tian_AAL/'
 out_dir = proj_dir+'data/derivatives/connectivity_lesions/'
-out_dir_norm = proj_dir+'data/derivatives/normalised_connectivity_lesions/'
+out_dir_norm = proj_dir+'data/derivatives/connectivity_lesions_normalised/'
 
 # get list of lesions to process
 lesion_list = glob.glob(lesn_dir+'*.nii.gz')
-
-# list of parcellations to run
-parc_list = glob.glob(parc_dir+'*.nii.gz')
 
 
 def dsi_studio_wrapper(dsi_path, fib_file, tract_file, out_file, roi=None):
