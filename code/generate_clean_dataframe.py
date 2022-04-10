@@ -8,20 +8,16 @@ analyses with LESYMAP.
 '''
 
 # %%
-import nibabel as nib
-from nilearn.image import new_img_like
-from scipy.sparse import load_npz
 import pandas as pd
 import numpy as np
 import glob
-from tqdm import tqdm
+
 
 # paths
 proj_dir = '/home/lukeh/projects/NeglectNetworks/'
 src_dir = proj_dir+'data/sourcedata/'
 lesn_dir = proj_dir+'data/derivatives/resampled_lesions/'
-con_dir = proj_dir+'data/derivatives/connectivity_lesions/'
-con_dir_norm = proj_dir+'data/derivatives/normalised_connectivity_lesions/'
+con_dir = proj_dir+'data/derivatives/connectivity_lesions'  # note the lack of /
 out_dir = proj_dir+'data/derivatives/'
 # the raw behavioural data spreadsheet
 raw_ss = src_dir+'NetworkLM_Updated.xlsx'
@@ -84,11 +80,15 @@ if __name__ == "__main__":
     df = search_df_IDnum(df, df2, 'files', 'raw_lesion_file')
 
     for loc, label in zip([lesn_dir,
-                           con_dir,
-                           con_dir_norm],
+                           con_dir+'/',
+                           con_dir+'_normalised/',
+                           con_dir+'_normalised_binarized-50/',
+                           con_dir+'_normalised_binarized-80/'],
                           ['resampled_lesion_file',
-                          'connectivity_lesion_file',
-                           'normalised_connectivity_lesion_file']):
+                           'connectivity_lesion_file',
+                           'connectivity_lesion_normalised_file',
+                           'connectivity_lesion_normalised_binarized50_file',
+                           'connectivity_lesion_normalised_binarized80_file']):
 
         # resampled lesions
         df2 = pd.DataFrame(glob.glob(loc+'*.nii.gz'), columns=['files'])
@@ -100,6 +100,6 @@ if __name__ == "__main__":
     df = df.dropna(subset=['raw_lesion_file'])
 
     # reset the index
-    df = df.reset_index()
-
+    df = df.reset_index(drop=True)
     df.to_csv(out_dir+'participant_dataframe.csv', index=False)
+
