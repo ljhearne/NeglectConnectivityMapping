@@ -5,3 +5,4 @@ tools
 notebooks/scratch.ipynb
 notebooks/test
 code/.Rhistory
+code/__pycache__
