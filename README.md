@@ -5,7 +5,7 @@ White matter connectivity 'disconnection' maps were generated in line with metho
 
 ### Pipeline
 - _resample_flip_lesions.py_: Resample lesion maps to the same space as the Yeh et al., normative connectome (1mm) and convert to neurological convention (flip left and right). Located in _data/derivatives/resampled_lesions/_.
-- _generate_connectivity_damage.py_: Takes each individuals lesion map and estimates connectivity damage using dsi studio [3]. Several parameter choices are made here that match the Lesion Quantification Toolkit. Three (or more) results are generated in voxel space 
+- _generate_connectivity_damage.py_: Takes each individuals lesion map and estimates connectivity damage using dsi studio [3]. Several parameter choices are made here that match the Lesion Quantification Toolkit. These results are generated in voxel space:
     - __absolute estimates of disconnection:__ voxel values correspond to the densities of disconnected streamlines within each voxel. Located in _data/derivatives/connectivity_lesions/_.
     - __normalised estimates of disconnection:__ voxel values correspond to the percentage of all of the streamlines contained within each voxel (i.e., computed from the HCP-842 streamline tractography atlas) that are expected to be disconnected by the lesion. Located in _data/derivatives/connectivity_lesions_normalised/_.
 - _generate_binarized_connectivity.py_: Generates binary maps of connectivity damage.
@@ -34,7 +34,7 @@ Produces output in the results folder: /data/derivatives/results. It runs throug
 │   │   ├── resampled_lesions
 │   │   ├── results/LEgoBin
 │   │   └── participant_dataframe.csv
-│   ├── sourcedata (raw data from Margaret M.)
+│   ├── sourcedata (raw data from M.M.)
 │   └── tractography_atlas (Yeh et al., atlas)
 └── notebooks
     ├── Connectivity Preprocessing Example.ipynb
